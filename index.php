@@ -42,7 +42,16 @@ di utilizzare il nostro generatore di password sicure.
     Milestone 1
     Creare un form che invii in GET la lunghezza della password. 
     Una nostra funzione utilizzerà questo dato per generare una password casuale da restituire all’utente. 
-    La password dovra' essere composta da lettere minuscole e maiuscole, numeri e simboli
+    La password dovra' essere composta da 
+    
+    lettere minuscole e 
+    
+    maiuscole, 
+    
+    numeri e 
+    
+    simboli
+
     Scriviamo tutto (logica e layout) in un unico file index.php.
     -->
 
@@ -53,21 +62,43 @@ di utilizzare il nostro generatore di password sicure.
         <input type="submit" value="vai">
 
     </form>
+    <div>
+        <?php
+        $lunghezza = 0;
+        $lunghezza = $_GET["lunghezza"];
+        $password = "";
 
-    <?php
-    $lunghezza = $_GET["lunghezza"];
-    $password = [];
+        for ($i = 0; $i < $lunghezza; $i++) {
+            $tipo = rand(1, 4);
+            // echo $tipo . ")  ";
 
-    for ($i = 0; $i < $lunghezza; $i++) {
-        echo (rand(1, 1000) . "<br>");
+            if ($tipo === 1) {
+                // lettera minuscola
+                $password .= chr(rand(97, 122));
+                // echo $password[strlen($password) - 1] . "<br>";
+            } else if ($tipo === 2) {
+                // lettera maiuscola
+                $password .= chr(rand(65, 90));
+                // echo $password[strlen($password) - 1] . "<br>";
+            } else if ($tipo === 3) {
+                // numero
+                $password .= chr(rand(48, 57));
+                // echo $password[strlen($password) - 1] . "<br>";
+            } else {
+                // simbolo
+                $password .= chr(rand(33, 47));
+                // echo $password[strlen($password) - 1] . "<br>";
+            };
+        }
 
-        // $password = ;
 
-    }
-
-    ?>
+        echo "la tua password è: <br><br>" . $password;
 
 
+
+        ?>
+
+    </div>
 
 
 
