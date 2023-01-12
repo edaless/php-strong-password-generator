@@ -31,12 +31,16 @@ di utilizzare il nostro generatore di password sicure.
 
 
 
+    <?php
+    include 'helper.php';
+    ?>
 
 </head>
 
 
 
 <body>
+
 
     <!-- 
     Milestone 1
@@ -63,36 +67,36 @@ di utilizzare il nostro generatore di password sicure.
 
     </form>
     <div>
+
         <?php
         $lunghezza = 0;
         $lunghezza = $_GET["lunghezza"];
         $password = "";
-
-        for ($i = 0; $i < $lunghezza; $i++) {
-            $tipo = rand(1, 4);
-            // echo $tipo . ")  ";
-
-            if ($tipo === 1) {
-                // lettera minuscola
-                $password .= chr(rand(97, 122));
-                // echo $password[strlen($password) - 1] . "<br>";
-            } else if ($tipo === 2) {
-                // lettera maiuscola
-                $password .= chr(rand(65, 90));
-                // echo $password[strlen($password) - 1] . "<br>";
-            } else if ($tipo === 3) {
-                // numero
-                $password .= chr(rand(48, 57));
-                // echo $password[strlen($password) - 1] . "<br>";
-            } else {
-                // simbolo
-                $password .= chr(rand(33, 47));
-                // echo $password[strlen($password) - 1] . "<br>";
-            };
-        }
+        carattereCasuale($lunghezza);
+        // for ($i = 0; $i < $lunghezza; $i++) {
 
 
-        echo "la tua password è: <br><br>" . $password;
+
+        //     // scelta casuale TIPO CARATTERE
+        //     $tipo = rand(1, 4);
+        //     if ($tipo === 1) {
+        //         // lettera minuscola
+        //         $password .= chr(rand(97, 122));
+        //     } else if ($tipo === 2) {
+        //         // lettera maiuscola
+        //         $password .= chr(rand(65, 90));
+        //     } else if ($tipo === 3) {
+        //         // numero
+        //         $password .= chr(rand(48, 57));
+        //     } else {
+        //         // simbolo
+        //         $password .= chr(rand(33, 47));
+        //     };
+        // }
+
+
+        // echo "la tua password è: <br><br>" . $password;
+
 
 
 
