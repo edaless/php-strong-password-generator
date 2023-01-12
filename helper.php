@@ -13,12 +13,14 @@ Spostiamo poi la logica in un file `helper.php` che includeremo poi nella pagina
 
 
 
-
-function carattereCasuale($lunghezza)
+function generaPassword($lunghezza, $ripetizione)
 {
 
+    $password = "";
+    $nuovoCarattere = "";
 
-    for ($i = 0; $i < $lunghezza; $i++) {
+    $i = 0;
+    while ($i < $lunghezza) {
 
 
 
@@ -26,19 +28,33 @@ function carattereCasuale($lunghezza)
         $tipo = rand(1, 4);
         if ($tipo === 1) {
             // lettera minuscola
-            $password .= chr(rand(97, 122));
+            $nuovoCarattere = chr(rand(97, 122));
         } else if ($tipo === 2) {
             // lettera maiuscola
-            $password .= chr(rand(65, 90));
+            $nuovoCarattere = chr(rand(65, 90));
         } else if ($tipo === 3) {
             // numero
-            $password .= chr(rand(48, 57));
+            $nuovoCarattere = chr(rand(48, 57));
         } else {
             // simbolo
-            $password .= chr(rand(33, 47));
+            $nuovoCarattere = chr(rand(40, 47));
         };
+
+        // se si può ripetere aggiungo il carattere e incremento l'indice, 
+        // oppure:
+        // se NON si può ripetere E il carattere NON è contenuto
+        if (
+            ($ripetizione === "si")
+            || ($ripetizione === "no" && !str_contains($password, $nuovoCarattere))
+        ) {
+            $password .= $nuovoCarattere;
+            $i++;
+        };
+        // se no non faccio niente 
+
+        // prova di console log
+        echo "<script>console.log( '$i   $nuovoCarattere' );</script>";
     }
 
-
-    echo "la tua password è: <br><br>" . $password;
-}
+    return $password;
+};
